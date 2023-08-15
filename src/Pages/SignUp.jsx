@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPassed, setIsPassed] = useState(false);
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -11,6 +12,15 @@ const SignUp = () => {
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  // 유효성검사
+  useEffect(() => {
+    if (email.includes("@") && password.length >= 8) {
+      setIsPassed(true);
+    } else {
+      setIsPassed(false);
+    }
+  }, [email, password]);
 
   return (
     <div>
@@ -24,7 +34,9 @@ const SignUp = () => {
         type="password"
         onChange={handleChangePassword}
       />
-      <button data-testid="signup-button">회원가입</button>
+      <button data-testid="signup-button" disabled={!isPassed}>
+        회원가입
+      </button>
     </div>
   );
 };
