@@ -35,6 +35,7 @@ export const signInApi = (email, password, navigate) => {
 // 리스트가져오기 api
 export const getListApi = (setData) => {
   const token = localStorage.getItem("access_token");
+
   axios
     .get("https://www.pre-onboarding-selection-task.shop/todos", {
       headers: {
@@ -44,6 +45,30 @@ export const getListApi = (setData) => {
     .then((res) => {
       console.log(res);
       setData(res.data);
+    })
+    .catch((error) => {
+      alert(error.response.data.message);
+    });
+};
+
+// 리스트작성 api
+export const createListApi = (content, setData) => {
+  const token = localStorage.getItem("access_token");
+  axios
+    .post(
+      "https://www.pre-onboarding-selection-task.shop/todos",
+      {
+        todo: content,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      getListApi(setData);
     })
     .catch((error) => {
       alert(error.response.data.message);
