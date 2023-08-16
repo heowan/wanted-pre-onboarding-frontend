@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import useValidation from "../Utils/useValidation";
+import { signInApi } from "../Services/api";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -13,21 +13,6 @@ const SignIn = () => {
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
-  };
-
-  // 회원가입 api
-  const signInApi = () => {
-    axios
-      .post("https://www.pre-onboarding-selection-task.shop/auth/signin", {
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        alert(error.response.data.message);
-      });
   };
 
   const handleClickSignIn = () => {
