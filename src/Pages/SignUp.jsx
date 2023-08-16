@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useValidation from "../Utils/useValidation";
 import { signUpApi } from "../Services/api";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isPassed = useValidation(email, password);
+  const navigate = useNavigate();
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -16,7 +18,7 @@ const SignUp = () => {
   };
 
   const handleClickSignUp = () => {
-    signUpApi();
+    signUpApi(email, password, navigate);
   };
 
   return (

@@ -16,8 +16,9 @@ const SignIn = () => {
   };
 
   const handleClickSignIn = () => {
-    signInApi();
+    signInApi(email, password);
   };
+
   return (
     <div>
       <input
