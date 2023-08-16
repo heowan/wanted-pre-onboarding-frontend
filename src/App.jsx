@@ -7,7 +7,6 @@ import Todo from "./Pages/Todo";
 function App() {
   const isLogin = !!localStorage.getItem("access_token");
 
-  console.log(isLogin);
   return (
     <BrowserRouter>
       <Routes>
@@ -21,6 +20,10 @@ function App() {
         />
         <Route
           path="/todo"
+          element={!isLogin ? <Navigate to="/signin" /> : <Todo />}
+        />
+        <Route
+          path="/"
           element={!isLogin ? <Navigate to="/signin" /> : <Todo />}
         />
       </Routes>

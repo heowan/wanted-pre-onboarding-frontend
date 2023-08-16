@@ -17,7 +17,7 @@ export const signUpApi = (email, password, navigate) => {
 };
 
 // 로그인 api
-export const signInApi = (email, password, navigate) => {
+export const signInApi = (email, password) => {
   axios
     .post("https://www.pre-onboarding-selection-task.shop/auth/signin", {
       email,
@@ -25,7 +25,7 @@ export const signInApi = (email, password, navigate) => {
     })
     .then((res) => {
       localStorage.setItem("access_token", res.data.access_token);
-      navigate("/todo");
+      window.location.reload();
     })
     .catch((error) => {
       alert(error.response.data.message);
