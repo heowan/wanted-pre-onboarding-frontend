@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import useValidation from "../Utils/useValidation";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isPassed, setIsPassed] = useState(false);
+  const isPassed = useValidation(email, password);
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -13,15 +14,6 @@ const SignUp = () => {
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  // 유효성검사
-  useEffect(() => {
-    if (email.includes("@") && password.length >= 8) {
-      setIsPassed(true);
-    } else {
-      setIsPassed(false);
-    }
-  }, [email, password]);
 
   // 회원가입 api
   const signUpApi = () => {
