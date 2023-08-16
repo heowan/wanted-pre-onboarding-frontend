@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import useValidation from "../Utils/useValidation";
 import { signInApi } from "../Services/api";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isPassed = useValidation(email, password);
-  const navigate = useNavigate();
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -18,7 +17,7 @@ const SignIn = () => {
   };
 
   const handleClickSignIn = () => {
-    signInApi(email, password, navigate);
+    signInApi(email, password);
   };
 
   return (
@@ -40,6 +39,7 @@ const SignIn = () => {
       >
         로그인
       </button>
+      <Link to={"/signup"}>회원가입하기</Link>
     </div>
   );
 };
