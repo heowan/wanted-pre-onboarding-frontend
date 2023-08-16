@@ -31,3 +31,21 @@ export const signInApi = (email, password, navigate) => {
       alert(error.response.data.message);
     });
 };
+
+// 리스트가져오기 api
+export const getListApi = (setData) => {
+  const token = localStorage.getItem("access_token");
+  axios
+    .get("https://www.pre-onboarding-selection-task.shop/todos", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      setData(res.data);
+    })
+    .catch((error) => {
+      alert(error.response.data.message);
+    });
+};
