@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import useValidation from "../Utils/useValidation";
-import { signUpApi } from "../Services/api";
+import { signInApi } from "../Services/api";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isPassed = useValidation(email, password);
@@ -17,8 +17,8 @@ const SignUp = () => {
     setPassword(e.target.value);
   };
 
-  const handleClickSignUp = () => {
-    signUpApi(email, password, navigate);
+  const handleClickSignIn = () => {
+    signInApi(email, password, navigate);
   };
 
   return (
@@ -34,14 +34,14 @@ const SignUp = () => {
         onChange={handleChangePassword}
       />
       <button
-        data-testid="signup-button"
+        data-testid="signin-button"
         disabled={!isPassed}
-        onClick={handleClickSignUp}
+        onClick={handleClickSignIn}
       >
-        회원가입
+        로그인
       </button>
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;
