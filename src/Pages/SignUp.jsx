@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useValidation from "../Utils/useValidation";
 import { signUpApi } from "../Services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +40,7 @@ const SignUp = () => {
       >
         회원가입
       </button>
+      <Link to={"/signin"}>로그인하기</Link>
     </div>
   );
 };
