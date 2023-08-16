@@ -43,11 +43,10 @@ export const getListApi = (setData) => {
       },
     })
     .then((res) => {
-      console.log(res);
       setData(res.data);
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      alert(error);
     });
 };
 
@@ -67,7 +66,51 @@ export const createListApi = (content, setData) => {
       }
     )
     .then((res) => {
-      console.log(res);
+      getListApi(setData);
+    })
+    .catch((error) => {
+      alert(error.response.data.message);
+    });
+};
+
+// 리스트수정 api
+export const editListApi = (editContent, isCompleted, id, setData) => {
+  const token = localStorage.getItem("access_token");
+  axios
+    .put(
+      `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+      {
+        todo: editContent,
+        isCompleted,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      getListApi(setData);
+    })
+    .catch((error) => {
+      alert(error.response.data.message);
+    });
+};
+
+// 리스트삭제 api
+export const deleteListApi = (id, setData) => {
+  const token = localStorage.getItem("access_token");
+  axios
+    .delete(
+      `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => {
       getListApi(setData);
     })
     .catch((error) => {

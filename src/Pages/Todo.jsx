@@ -33,7 +33,12 @@ const Todo = () => {
           추가
         </button>
       </div>
-      <ul>{data && data.map((el) => <ListItem key={el.id} item={el} />)}</ul>
+      <ul>
+        {data &&
+          data.map((el) => (
+            <ListItem key={el.id} item={el} setData={setData} />
+          ))}
+      </ul>
     </div>
   );
 };
